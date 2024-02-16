@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour
     public Transform bulletSpawnPoint; 
     public float bulletSpeed = 10f;
 
+    void Start()
+    {
+        timer = Random.Range(3f, 5f);
+    }
 
     void Update()
     {
@@ -18,7 +22,7 @@ public class Enemy : MonoBehaviour
         if(timer <= 0)
         {
             Shoot();
-            timer = 5.0f;
+            timer = Random.Range(3f, 5f);
         }
     }
 

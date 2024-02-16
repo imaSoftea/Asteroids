@@ -17,6 +17,8 @@ public class Horde : MonoBehaviour
     //Prevents Double Direction Switches
     float switchDirTimer = 1.0f;
 
+    int tickCount = 0;
+
     //Update is called once per frame
     void FixedUpdate()
     {
@@ -38,7 +40,17 @@ public class Horde : MonoBehaviour
         {
             isGoingLeft = !isGoingLeft;
             switchDirTimer = 1.0f;
+            tickCount++;
             transform.position += -Vector3.forward * jumpDistance;
+
+            if(tickCount >= 4)
+            {
+                #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+                #else
+                Application.Quit();
+                #endif
+            }
         }
     }
 }
